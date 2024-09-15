@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Sign up Form</title>
+<link rel="stylesheet" href="" th:href="@{/css/signupstyle.css}">
+</head>
+<body>
+
+ <div class="container">
+      <header style="text-align: center;">Signup</header>
+      <form action="/patient/signup" method="post">
+      <p style="color: red">[[${same_username_found}]]</p>
+      
+      <div class="field email-field">
+          <div class="input-field">
+                <input type="file" name="image" class="form-control">
+          </div>
+        </div>
+        
+       
+
+        
+        <div class="field create-password">
+          <div class="input-field">
+             <input type="file" name="image" class="form-control">
+            <i class="bx bx-hide show-hide"></i>
+          </div>
+       
+          
+        </div>
+        
+        <div class="field confirm-password">
+          <div class="input-field">
+           <input type="file" name="image" class="form-control">
+            <i class="bx bx-hide show-hide"></i>
+          </div> 
+        
+        </div>
+        <div class="input-field button">
+          <input type="submit" value="Submit Now" />
+        </div>
+
+      
+      </form>
+    </div>
+</body>
+</html>

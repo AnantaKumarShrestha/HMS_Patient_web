@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<!--=== Coding by CodingLab | www.codinglabweb.com === -->
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!----======== CSS ======== -->
+    <link rel="stylesheet" th:href="@{/css/registrationstyle.css}">
+     
+    <!----===== Iconscout CSS ===== -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+
+    <title>Responsive Regisration Form </title>
+    
+    <style type="text/css">
+    
+    .container form{
+    position: relative;
+    margin-top: 16px;
+    min-height: 300px;
+    background-color: #fff;
+    overflow: hidden;
+}
+.container form .form{
+    position: absolute;
+    background-color: #fff;
+    transition: 0.3s ease;
+}
+.container form .form.second{
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(100%);
+}
+
+  .required::before {
+  content: "*";
+  color: red;
+}
+  
+  
+form.secActive .form.second{
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(0);
+}
+form.secActive .form.first{
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(-100%);
+}
+.container form .title{
+    display: block;
+    margin-bottom: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    margin: 6px 0;
+    color: #333;
+}
+.container form .fields{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+form .fields .input-field{
+    display: flex;
+    width: calc(100% / 3 - 15px);
+    flex-direction: column;
+    margin: 4px 0;
+}
+
+.alert-danger {
+    color: #842029;
+    background-color: #f8d7da;
+    border-color: #f5c2c7;
+}
+
+.alert {
+    position: relative;
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+}
+.alert-success {
+    color: #0f5132;
+    background-color: #d1e7dd;
+    border-color: #badbcc;
+}
+.text-center {
+    text-align: center !important;
+}
+    </style> 
+</head>
+<body>
+ 
+    <div class="container">
+        <header>Registration</header>
+         <div th:if="${message}" class="alert alert-danger text-center" role="alert">
+    <p th:text="${message}"></p>
+   </div>
+
+        <form action="/patient/registration" method="post" th:object="${userObject}">
+            <div class="form first">
+                <div class="details personal">
+                    <span class="title">Personal Details</span>
+
+                    <div class="fields">
+                        <div class="input-field">
+                            <label class = "required">Full Name</label>
+                            <input type="text" pattern = "^[A-Za-z ]{0,50}$" title = "Only 50 character" placeholder="Enter your name" name="patientPersonalDetailsModel.fullname" required>
+                        </div>
+
+                        <div class="input-field">
+                            <label class = "required">Date of Birth</label>
+                            <input type="date" placeholder="Enter birth date" name="patientPersonalDetailsModel.dob" required>
+                        </div>
+
+                        <div class="input-field">
+                            <label class = "required">Gmail</label>
+                            <input type="text" pattern=".+@gmail\.com" size="30" maxlength="40" title="Please enter a valid email address (e.g., user@gmail.com)" placeholder="Enter your email" name="patientPersonalDetailsModel.gmail" required>
+                        </div>
+
+                        <div class="input-field">
+                            <label class = "required">Mobile Number</label>
+                            <input type="text" pattern="\d{10}" title="Enter 10 digit number" placeholder="Enter mobile number" name="patientPersonalDetailsModel.phonenumber" required>
+                        </div>
+                        <div class="input-field">
+                            <label class = "required">Addresss</label>
+                            <input type="text" pattern = "^[A-Za-z]{1,50}$" title = "Only 50 character" placeholder="Enter your address" name="patientPersonalDetailsModel.address" required>
+                        </div>
+
+
+
+                        <div class="input-field">
+                            <label class = "required">Gender</label>
+                            <select name="patientPersonalDetailsModel.gender" required>
+                                <option value= "" >Select</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+
+                    </div>
+                </div>
+
+                    <div class="buttons">
+                        
+                        <button class="sumbit">
+                            <span class="btnText">Submit</span>
+                            <i class="uil uil-navigator"></i>
+                        </button>
+                    </div>
+           
+            </div>
+             <input type="hidden" th:field="*{id}">
+             <input type="hidden" th:field="*{email}">
+             <input type="hidden" th:field="*{password}">
+
+            
+        </form>
+    </div>
+
+</body>
+</html>
